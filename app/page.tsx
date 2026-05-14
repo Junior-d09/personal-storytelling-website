@@ -7,6 +7,7 @@ import { Stats } from "@/components/sections/stats";
 import { Projects } from "@/components/sections/projects";
 import { Footer } from "@/components/sections/footer";
 import { StorySection } from "@/components/sections/StorySection";
+import { ProofSection } from "@/components/sections/ProofSection";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <About />
       <Timeline />
       <StorySection />
+      <ProofSection />
       <Vision />
       <Skills />
       <Stats />
