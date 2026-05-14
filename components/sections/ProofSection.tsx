@@ -15,7 +15,7 @@ const steps = [
     title: "The Execution",
     subtitle: "Real Work",
     text: "I moved from learning to execution. Real systems. Real users. Real impact through code and consistency.",
-    image: "/images/me-coding.jpg",
+    image: "/images/me-screen.jpg",
   },
   {
     id: "results",
@@ -33,114 +33,90 @@ const steps = [
   },
 ];
 
-function Step({
-  step,
-  index,
-}: {
-  step: (typeof steps)[0];
-  index: number;
-}) {
-  const isReverse = index % 2 !== 0;
+function Step({ step, index }: any) {
+  const reverse = index % 2 !== 0;
 
   return (
-    <section className="relative min-h-screen flex items-center py-20 overflow-hidden">
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      className="relative py-16 md:py-24 px-4"
+    >
       <div
-        className={`container mx-auto px-6 grid lg:grid-cols-2 gap-14 items-center ${
-          isReverse ? "lg:[&>*:first-child]:order-2" : ""
+        className={`container mx-auto grid md:grid-cols-2 gap-10 items-center ${
+          reverse ? "md:[&>div:first-child]:order-2" : ""
         }`}
       >
         {/* IMAGE */}
         <motion.div
-          initial={{ opacity: 0, x: isReverse ? 60 : -60 }}
+          initial={{ opacity: 0, x: reverse ? 60 : -60 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8 }}
-          className="relative"
+          transition={{ duration: 0.6 }}
         >
-          <div className="glass rounded-3xl overflow-hidden border border-white/10">
-            <img
-              src={step.image}
-              alt={step.title}
-              loading="lazy"
-              className="w-full h-[320px] md:h-[500px] object-cover"
-            />
-          </div>
-
-          {/* Glow */}
-          <div className="absolute -inset-6 bg-primary/10 blur-3xl -z-10" />
+          <img
+            src={step.image}
+            alt={step.title}
+            className="w-full h-[280px] md:h-[450px] object-cover rounded-2xl"
+          />
         </motion.div>
 
         {/* TEXT */}
         <motion.div
-          initial={{ opacity: 0, x: isReverse ? -60 : 60 }}
+          initial={{ opacity: 0, x: reverse ? -60 : 60 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-2xl"
+          transition={{ duration: 0.6 }}
         >
-          <span className="text-primary uppercase tracking-[0.25em] text-xs">
+          <span className="text-primary uppercase tracking-[0.2em] text-xs">
             {step.subtitle}
           </span>
 
-          <h2 className="text-4xl md:text-6xl font-bold mt-4 mb-8 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-bold mt-3 mb-5">
             {step.title}
           </h2>
 
-          <p className="text-muted-foreground text-lg md:text-xl leading-relaxed">
+          <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
             {step.text}
           </p>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
 export function ProofSection() {
   return (
-    <section className="relative py-32 overflow-hidden">
-      {/* Background glow */}
+    <section className="relative py-24 md:py-32">
+      {/* background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
 
-      {/* Header */}
-      <div className="relative z-10 text-center mb-24 px-6">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-5xl md:text-7xl font-bold"
-        >
+      {/* HEADER */}
+      <div className="relative z-10 text-center mb-16 md:mb-24 px-4">
+        <h1 className="text-4xl md:text-6xl font-bold">
           Proof of <span className="text-primary">Execution</span>
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.7 }}
-          className="text-muted-foreground mt-6 max-w-2xl mx-auto text-lg"
-        >
+        <p className="text-muted-foreground mt-4">
           A cinematic journey from curiosity to real-world impact.
-        </motion.p>
-      </div> 
+        </p>
+      </div>
 
-      {/* Steps */}
+      {/* STEPS */}
       <div className="relative z-10">
         {steps.map((step, index) => (
           <Step key={step.id} step={step} index={index} />
         ))}
       </div>
 
-      {/* Final quote */}
-      <div className="relative z-10 px-6 mt-20">
+      {/* QUOTE */}
+      <div className="relative z-10 px-4 mt-20">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="glass rounded-3xl p-10 md:p-14 max-w-4xl mx-auto text-center"
+          className="glass rounded-2xl p-8 md:p-14 max-w-4xl mx-auto text-center"
         >
-          <p className="text-2xl md:text-4xl font-bold leading-relaxed">
+          <p className="text-xl md:text-3xl font-bold leading-relaxed">
             “I don’t chase opportunities.
             <span className="text-primary">
               {" "}I build systems that create them.
